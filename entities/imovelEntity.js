@@ -77,4 +77,27 @@ constructor(id,descricao,cep,endereco,bairro,cidade,valor,disponivel){
     this.#valor = valor;
     this.#disponivel = disponivel;
 }
+validar(){
+    if(this.#descricao && this.#bairro && this.#cep && this.#cidade && this.#valor && this.#endereco && this.#disponivel) {
+        let enderecoValidar = this.#endereco.split(",");
+        if(enderecoValidar.length > 1 && /^[0-9]+[A-Za-z]*$/.test(enderecoValidar[1].trim()))
+            return true;
+    }
+}
+    static toMap(row){
+        return new ImovelEntity(row["imv_id"], row["imv_descricao"], row["imv_cep"], row["imv_endereco"], row["imv_bairro"], row["imv_cidade"], row["imv_valor"], row["imv_disponivel"])
+    }
+
+    toJSON(){
+        return{
+            id: this.#id,
+            descricao: this.#descricao,
+            cep: this.#cep,
+            bairro: this.#bairro,
+            cidade: this.#cidade,
+            valor: this.#valor,
+            endereco: this.#endereco,
+            disponivel: this.#disponivel
+        }
+    }
 }
