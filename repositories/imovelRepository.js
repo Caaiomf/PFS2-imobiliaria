@@ -37,7 +37,7 @@ export default class ImovelRepository{
 
     async atualizar(entidade){
         //UPDATE
-        let sql = "update tb_imovel set imv_descricao = ?, imv_cep = ?, imv_endereco = ?, imv_bairro = ?, imv_cidade = ?, imv_valor = ?, imv_disponivel = ?, where imv_id" ;
+        let sql = "update tb_imovel set imv_descricao = ?, imv_cep = ?, imv_endereco = ?, imv_bairro = ?, imv_cidade = ?, imv_valor = ?, imv_disponivel = ? where imv_id = ?";
         let valores = [entidade.descricao, entidade.cep, entidade.endereco, entidade.bairro, entidade.cidade, entidade.valor, entidade.disponivel, entidade.id];
 
         let result = await this.#banco.ExecutaComandoNonQuery(sql,valores);
@@ -51,6 +51,20 @@ export default class ImovelRepository{
 
         let valores = [id];
 
-        let result = await this.#banco.ExecutaComandoNonQuery
+        let result = await this.#banco.ExecutaComandoNonQuery(sql,valores);
+        return result;
+    }
+
+    async obterPorId(id)
+    {
+        let sql = "select * from tb_imovel where imv_id = ?";
+        let valores = [id];
+
+        let rows = await this.#banco.ExecutaComando(sql, valores);
+        if(rows && rows.length > 0){
+            return ImovelEntity.toMap(rows[0]);
+        }
+
+        return null;
     }
 }

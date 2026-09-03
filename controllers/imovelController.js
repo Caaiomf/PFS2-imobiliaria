@@ -38,7 +38,23 @@ export default class ImovelController{
     }
     async atualizar(req,res){
         try{
-
+            let{id, descricao, cep, endereco, bairro, cidade, valor, disponivel} = req.body;
+            let entidade = new ImovelEntity(id, descricao, cep, endereco, bairro, cidade, valor, disponivel);
+            if(entidade.validar()){
+                if(this.#repo.obterPorId(id)){
+                    //prosseguir com a atualização
+                    let result = this.#repo.atualizar(entidade);
+                    if(result){
+                        return res.status(200).json({msg: "imovel atualizado com sucesso!"});
+                    }else{
+                        throw new Error("Erro durante a atualização no banco de dados");
+                    }
+                }else{
+                    return res.status(404).json({msg: "imovel não encontrado para atualização!"});
+                }
+            }else{
+                return res.status(400).json({msg: "parametros incorretos!"})
+            }
         }catch(ex){
             console.log(ex);
             return res.status(500).json({msg: "Erro interno no servidor"})
@@ -46,7 +62,17 @@ export default class ImovelController{
     }
     async deletar(req,res){
         try{
-
+            let{id} = req.params;
+            if(await this.#repo.obterPorId(id)){
+                let result = await this.#repo.deletar
+                if(result){
+                    return res.status(200).json({msg: "imovel Deletado com sucesso!"});
+                }else{
+                    throw new Error("Erro Durante exclusão do imovel no banco de dados!");
+                }
+            }else{
+                return res.status(404).json({msg: "imovel não encontrado para deleção!"});
+            }
         }catch(ex){
             console.log(ex);
             return res.status(500).json({msg: "Erro interno no servidor"})

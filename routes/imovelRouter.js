@@ -16,4 +16,16 @@ router.post("/", (req,res) => {
     controladora.cadastrar(req,res);
 })
 
+router.put("/", (req,res) =>{
+    // #swagger.tags = ['Imovel']
+    // #swagger.summary = "Atualizar um imovel existente"
+    controladora.atualizar(req,res);
+})
+
+router.delete("/:id", (req,res) => {
+    // #swagger.tags = ['Imovel']
+    // #swagger.summary = "excluir um imovel existente"
+    controladora.deletar(req,res);
+})
+
 export default router;

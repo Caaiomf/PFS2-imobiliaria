@@ -57,11 +57,11 @@ export default class ImovelEntity{
     }
 
     set valor(value){
-        this.#valor = valor;
+        this.#valor = value;
     }
 
     get disponivel(){
-        return this.#id;
+        return this.#disponivel;
     }
 
     set disponivel(valor){
