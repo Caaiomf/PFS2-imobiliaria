@@ -1,4 +1,4 @@
-import PerfilEntity from "./perfilEntity.JS";
+import PerfilEntity from "./perfilEntity.js";
 
 export default class UsuarioEntity{
 

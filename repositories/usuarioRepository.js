@@ -10,9 +10,23 @@ export default class UsuarioRepository{
         this.#banco = new Database();
     }
     async obterPorEmailSenha(email,senha){
-        let sql = "select * from tb_usuario where usu_email ? and usu_senha = ?";
+        let sql = "select * from tb_usuario where usu_email = ? and usu_senha = ?";
 
         let valores = [email, senha];
+        let rows = await this.#banco.ExecutaComando(sql, valores);
+
+        if(rows.length > 0){
+            // faz o mapeamento
+            return UsuarioEntity.toMap(rows[0]);
+        }
+        return null;
+    }
+
+
+    async obterPorId(id){
+        let sql = "select * from tb_usuario where usu_id = ? and usu_ativo = 1";
+
+        let valores = [id];
         let rows = await this.#banco.ExecutaComando(sql, valores);
 
         if(rows.length > 0){

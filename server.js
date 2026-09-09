@@ -1,6 +1,7 @@
 import express from 'express';
 import imovelRouter from './routes/imovelRouter.js';
 import loginRouter from './routes/loginRouter.js';
+import cookieParser from 'cookie-parser';
 import swaggerUI from "swagger-ui-express";
 import{createRequire} from "module";
 const require = createRequire(import.meta.url);
@@ -9,6 +10,7 @@ const outputJson = require("./swagger-output.json");
 const server = express();
 
 server.use(express.json());
+server.use(cookieParser());
 
 server.use("/docs", swaggerUI.serve, swaggerUI.setup(outputJson));
 
