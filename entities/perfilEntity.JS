@@ -1,4 +1,6 @@
-export default class PerfilEntity{
+import Entity from "./entity.js";
+
+export default class PerfilEntity extends Entity{
     #id;
     #descricao;
 
@@ -17,6 +19,7 @@ export default class PerfilEntity{
     }
 
     constructor (id, descricao){
+        super();
         this.#id = id;
         this.#descricao = descricao;
     }

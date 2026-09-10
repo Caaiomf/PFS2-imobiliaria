@@ -14,11 +14,11 @@ export default class loginController{
         try{
             let {email, senha} = req.body;
             if(email && senha){
-                let usuario = this.#repoUsuario. obterPorEmailSenha(email, senha);
+                let usuario = await this.#repoUsuario.obterPorEmailSenha(email, senha);
                 if(usuario){
                     //contrei o usuario!
                     //vamos gerar a auth
-                    let middleware = AutenticacaoMiddleware();
+                    let middleware = new AutenticacaoMiddleware();
                     let token = middleware.gerarJWT(usuario.id, usuario.nome,usuario.email,usuario.perfil.id);
                     res.cookie("token-pfs2", token, {httpOnly: true});
                     return res.status(200).json({token: token});

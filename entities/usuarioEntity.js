@@ -1,6 +1,7 @@
+import Entity from "./entity.js";
 import PerfilEntity from "./perfilEntity.js";
 
-export default class UsuarioEntity{
+export default class UsuarioEntity extends Entity{
 
     #id;
     #nome;
@@ -52,6 +53,7 @@ export default class UsuarioEntity{
     }
 
     constructor(id, nome, email, senha, ativo, perfil){
+        super();
         this.#id = id;
         this.#nome = nome;
         this.#email = email;

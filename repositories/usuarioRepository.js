@@ -22,7 +22,19 @@ export default class UsuarioRepository{
         return null;
     }
 
+    async listar(){
+        let sql = "select * from tb_usuario";
+        let rows = await this.#banco.ExecutaComando(sql);
+        let lista = [];
+        if(rows.length > 0 ){
+            //faz o mapeamento
+            for(let row of rows){
+                lista.push(UsuarioEntity.toMap(row));
+            }
+        }
 
+        return lista;
+    }
     async obterPorId(id){
         let sql = "select * from tb_usuario where usu_id = ? and usu_ativo = 1";
 

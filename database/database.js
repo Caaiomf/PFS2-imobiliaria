@@ -7,22 +7,22 @@ export default class Database {
     get conexao() { return this.#conexao;} set conexao(conexao) { this.#conexao = conexao; }
 
     constructor() {
-       /* this.#conexao = mysql.createPool({
+       this.#conexao = mysql.createPool({
             host: '132.226.245.178', //endereço do nosso banco de dados na nuvem
             database: 'PFS2_106888', //a database de cada um de vocês possui a nomenclatura PFS2_(RA)
             user: '106888', // usuario e senha de cada um de vocês é o RA
             password: '106888',
             idleTimeout: 30000,
             connectionLimit: 50
-        });*/
-       this.#conexao = mysql.createPool({
+        });
+       /*this.#conexao = mysql.createPool({
             host: '132.226.245.178', //endereço do nosso banco de dados na nuvem
             database: 'PFS2_10442519293', //a database de cada um de vocês possui a nomenclatura PFS2_(RA)
             user: '10442519293', // usuario e senha de cada um de vocês é o RA
             password: '10442519293',
             idleTimeout: 30000,
             connectionLimit: 50
-        });
+        });*/
     }
 
     ExecutaComando(sql, valores) {
