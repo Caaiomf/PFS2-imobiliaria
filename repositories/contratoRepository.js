@@ -3,6 +3,7 @@ import AluguelEntity from "../entities/aluguelEntity.js";
 import ContratoEntity from "../entities/contratoEntity.js";
 import ImovelEntity from "../entities/imovelEntity.js";
 import UsuarioEntity from "../entities/usuarioEntity.js";
+import Database from "../database/database.js";
 
 
 

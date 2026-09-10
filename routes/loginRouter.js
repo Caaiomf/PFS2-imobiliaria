@@ -10,4 +10,4 @@ router.post("/",  (req,res) => {
     controladora.validar(req,res);
 })
 
-export default router
+export default router;

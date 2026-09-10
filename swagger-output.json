@@ -245,6 +245,23 @@
           }
         }
       }
+    },
+    "/locacao/": {
+      "post": {
+        "tags": [
+          "Locação"
+        ],
+        "summary": "Realiza o processo de locação",
+        "description": "",
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
     }
   }
 }

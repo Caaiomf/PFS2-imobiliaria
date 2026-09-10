@@ -1,5 +1,6 @@
 
 import AluguelEntity from "../entities/aluguelEntity.js";
+import Database from "../database/database.js";
 
 
 
